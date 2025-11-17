@@ -32,7 +32,7 @@ Features:
 - MVVM with separation of concerns
 - Real API networking
 - Persistent storage for user settings + session history
-- A custom animated circular timer component
+- A custom circular timer component
 - Clean, readable, maintainable code
 
 ---
@@ -67,7 +67,7 @@ Features:
 - CAShapeLayer
 - UIBezierPath
 - Adjustable line width & colors
-- Smooth strokeEnd-based progress animation
+- Progress updates reflected via strokeEnd property
 - Inner filled circle
 - @IBDesignable & @IBInspectable support
 
@@ -75,18 +75,22 @@ Features:
 - API:
 `https://zenquotes.io/api/random`
 - Cross-fade text animation
-- Fallback behavior when offline
+- Uses last successful quote as fallback when offline
 
 ### Stats Screen
 - Total sessions completed
 - Total focused minutes
 - Daily streak calculation
 - Powered by StorageService
+- Robust streak calculation using calendar-based day comparison
 
 ### Settings
 - Adjust timer length via slider
 - Toggle notifications
-- Automatically syncs changes to home screen via NotificationCenter 
+- Timer length changes automatically sync to the Home screen via NotificationCenter
+- 	Handles all iOS authorization states: notDetermined, denied, authorized, provisional, ephemeral
+- Shows “Open Settings” alert when notifications are denied
+- Removes pending notifications when disabled
 
 ### Persistent Storage
 Abstracted through StorageService:
@@ -135,8 +139,9 @@ Circura/
 │
 ├── Screenshots/
 │   ├── demo.gif
-│   ├── start_screen.png
-│   └── game_screen.png
+│   ├── timer_screen.png
+│   ├── settings_screen.png
+│   └── stats_screen.png
 │
 ├── Screens/
 │   ├── Timer/
@@ -188,7 +193,7 @@ Circura/
 - Consecutive-day streak
 
 ### Settings View Model
-- Timer changes
+- Broadcasts timer-length changes using NotificationCenter so the Home screen updates immediately
 - Notification toggles
 
 ### Custom Circular Timer View
@@ -221,7 +226,6 @@ Circura/
 - Haptic feedback
 - Custom tab bar icons / animations
 - Dark mode
-- Smooth progress animation
 
 ### Logic of the App
 - Long-term stats overview
